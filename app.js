@@ -5,6 +5,9 @@ let  userScore =0;
 
  const  choices =document.querySelectorAll(".choice");
 
+ const userScorePara=document.querySelector("#user-score");
+    const compScorePara=document.querySelector("#Comp-score");
+
 
 const computerChoice = () => {
 
@@ -18,25 +21,28 @@ const computerChoice = () => {
 
 const drawGame=()   => {
 
-console.log("It's a draw!");
+
 msg.innerText = "It's a draw!";
 msg.style.backgroundColor = "#081b31";
 
 }
 
 
-const showWinner = (userwin) => {
+const showWinner = (userwin,userChoise,compChoice) => {
 if(userwin) {
- console.log("You win!");
-  msg.innerText = "You win!";
+ userScore++;
+    userScorePara.innerText = userScore;
+  msg.innerText = "You win! "+ userChoise + " beats " + compChoice;
   msg.style.backgroundColor = "green";
 
   
 }
 else
 {
-    console.log("Computer wins!");
-    msg.innerText = "Computer wins!";
+    compScore++;
+    compScorePara.innerText = compScore;
+    
+    msg.innerText = "Computer wins! " + compChoice + " beats " + userChoise;
     msg.style.backgroundColor = "red";
 }
 
@@ -46,10 +52,10 @@ else
 
 
 const playGame = (userChoise) => {
- console.log("User choice:", userChoise);
+ 
 
  const compChoice= computerChoice();
-    console.log("Computer choice:", compChoice);
+   
 
     if(userChoise === compChoice) {
        
@@ -75,7 +81,7 @@ const playGame = (userChoise) => {
             userwin = compChoice === "rock" ? false : true;
         }
 
-        showWinner(userwin);
+        showWinner(userwin,userChoise, compChoice );
 
 
 
